@@ -1,0 +1,103 @@
+/******************************************************************************
+criando um sistema que receba o cadastro dos alunos e exiba no final a sua situação escolar. let's gooo!
+*******************************************************************************/
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    int matricula;
+    char nome[100];
+    float nota1, nota2;
+} Aluno;
+
+Aluno aluno_ifba;
+ 
+void menu ();
+void inicializar ();
+void cadastrar ();
+void imprimir ();
+float media (float nota1, float nota2);
+void situacao (float media);
+
+int main (){
+    menu ();
+    return 0;
+}
+
+void menu (){
+    int opcao; 
+
+  do{
+      
+    printf ("~~~ MENU DE OPÇÕES ~~~ \n");
+    printf ("Escolha uma das opções abaixo:\n");
+    printf ("1. Inicializar o registro\n");
+    printf ("2. Cadastrar um aluno \n");
+    printf ("3. Exibir um aluno \n");
+    scanf ("%d", &opcao);
+      
+    switch (opcao){
+    case 1:
+        inicializar (); 
+        break;
+	  
+    case 2:
+        cadastrar ();
+        break;
+	  
+    case 3:
+        imprimir ();
+        break;
+	  
+    case 4:
+        printf ("Valeu por usar nosso sistema :>");
+        break;
+	  
+    default:
+        printf ("Opção inválida, tenta de novo!");
+        break;
+}
+     
+}   while (opcao != 4);
+
+}
+
+void inicializar (){
+    aluno_ifba.matricula = 0;
+    strcpy (aluno_ifba.nome, "");
+    aluno_ifba.nota1=0.0;
+    aluno_ifba.nota2=0.0;
+}
+
+void cadastrar (){
+    printf ("Digite a matrícula do aluno.");
+    scanf ("%d", &aluno_ifba.matricula);
+    printf ("Digite o nome do aluno.");
+    scanf ("aluno_ifba.nome, 100, stdin");
+	printf(" Digite a primeira nota do aluno.");
+	scanf("%f", &aluno_ifba.nota1);
+	printf(" Digite a segunda nota do aluno.");
+	scanf("%f", &aluno_ifba.nota2);
+}
+
+float media(float nota1, float nota2){
+	return ((nota1+nota2)/2.0);
+}
+
+
+void imprimir(){
+	printf("Dados do aluno:\n");
+	printf("Matrícula: %d\n", aluno_ifba.matricula);
+	printf("Nome: %s\n", aluno_ifba.nome);
+	printf("Nota 1: %2.f\n", aluno_ifba.nota1);
+	printf("Nota 2: %2.f\n", aluno_ifba.nota2);
+};
+
+void situacao(float media){
+	if(media>=7){
+		printf("\nAprovado, pode omemorar!");
+	} else{
+        printf("\nLamento, mas você reprovou.:<");
+    }
+}
+
